@@ -71,7 +71,8 @@ export default {
         .content-wrapper {
             flex: auto;
             background: #202124;
-            color: #fff
+            color: #fff;
+            padding-top: 30px;
         }
     }
 
