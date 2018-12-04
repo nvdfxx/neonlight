@@ -27,6 +27,20 @@
                 </span>
             </div>
         </div>
+        <div class="damage">
+            <div class="damage__item">
+                <span>{{avgDmg}}</span>
+                <span>Средний урон</span>
+            </div>
+            <div class="damage__item">
+                <span>{{damageCoefficient}}</span>
+                <span>Коэффициент урона</span>
+            </div>
+            <div class="damage__item">
+                <span>{{avgXP}}</span>
+                <span>Средний опыт</span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -75,14 +89,25 @@
                 }
 
                 return winrate
+            },
+            avgDmg() {
+                return (this.stats.damage_dealt / this.stats.battles).toFixed(0)
+            },
+            damageCoefficient() {
+                return (this.stats.damage_dealt / this.stats.damage_received).toFixed(2)
+            },
+            avgXP() {
+                return (this.stats.xp / this.stats.battles).toFixed(0)
             }
         },
         created() {
+            this.$store.dispatch('setAppLoading', true);
             axios.get(`https://api.wotblitz.ru/wotb/account/info/?application_id=d58946c3ef3b4f8124a5a5712a0d7ddb&account_id=${this.getAccountID}`)
             .then(res => {
                 this.stats = res.data.data[this.getAccountID].statistics.all;
                 this.ToLB = res.data.data[this.getAccountID].last_battle_time;
                 this.accCreatedAt = res.data.data[this.getAccountID].created_at;
+                this.$store.dispatch('setAppLoading', false);
                 console.log(this.stats)
             })
             .catch(e => console.error(e))
@@ -92,6 +117,8 @@
 
 <style lang="scss" scoped>
 
+    @import '../scss/global.scss';
+
     h1 {
         font-size: 60px;
     }
@@ -99,6 +126,7 @@
     .battles {
         display: flex;
         justify-content: center;
+        margin-bottom: 40px;
         .battles__item {
             display: flex;
             flex-direction: column;
@@ -110,11 +138,25 @@
         }
     }
 
-    .red {color: #f44336}
-    .yellow {color: #ffd600}
-    .green {color: #00c853}
-    .blue {color: #1976d2}
-    .purple {color: #d500f9}
+    .damage {
+        display: flex;
+        justify-content: center;
+        .damage__item {
+            display: flex;
+            flex-direction: column;
+            margin: 0 40px;
+            font-size: 20px;
+            span:first-child {
+                font-size: 48px;
+            }
+        }
+    }
+
+    .red {color: $red}
+    .yellow {color: $yellow}
+    .green {color: $green}
+    .blue {color: $blue}
+    .purple {color: $purple}
 
 
 </style>
