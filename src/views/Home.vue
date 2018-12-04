@@ -33,9 +33,7 @@ export default {
     }
   },
   computed: {
-    getAccountID() {
-      return this.$store.getters.getAccountID
-    }
+    
   },
   methods: {
     getAccountIDfromNickname() {
@@ -46,9 +44,8 @@ export default {
       })
       .catch(e => console.log(e))
     },
-    goToStats(id, nickname) {
+    goToStats(id) {
       this.$store.dispatch('setAccountID', id);
-      this.$store.dispatch('setNickname', nickname);
       this.$router.push('/about')
     }
   },

@@ -22,9 +22,6 @@
             }
         },
         computed: {
-            getRoutes() {
-                return this.$router.options.routes
-            },
             getNickname() {
                 return this.$store.getters.getNickname
             }

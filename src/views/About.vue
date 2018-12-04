@@ -52,15 +52,10 @@
         data() {
             return {
                 stats: {},
-                ToLB: null,
-                accCreatedAt: null,
                 winrateClass: ''
             }
         },
         computed: {
-            getAccountID() {
-                return this.$store.getters.getAccountID
-            },
             winrate() {
                 let battles = this.stats.battles;
                 let wins = this.stats.wins;
@@ -101,16 +96,7 @@
             }
         },
         created() {
-            this.$store.dispatch('setAppLoading', true);
-            axios.get(`https://api.wotblitz.ru/wotb/account/info/?application_id=d58946c3ef3b4f8124a5a5712a0d7ddb&account_id=${this.getAccountID}`)
-            .then(res => {
-                this.stats = res.data.data[this.getAccountID].statistics.all;
-                this.ToLB = res.data.data[this.getAccountID].last_battle_time;
-                this.accCreatedAt = res.data.data[this.getAccountID].created_at;
-                this.$store.dispatch('setAppLoading', false);
-                console.log(this.stats)
-            })
-            .catch(e => console.error(e))
+            this.stats = this.$store.getters.getStats
         }
     }
 </script>
