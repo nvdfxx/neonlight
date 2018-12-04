@@ -4,8 +4,11 @@
             <div class="header__logo">
                 <router-link to="/">Neonlight</router-link>
             </div>
-            <div class="header__nick">
-                Nickname
+            <div v-if="getNickname" class="header__nick">
+                {{getNickname}}
+            </div>
+            <div v-else class="header__nick">
+                
             </div>
         </div>
     </header>
@@ -21,6 +24,9 @@
         computed: {
             getRoutes() {
                 return this.$router.options.routes
+            },
+            getNickname() {
+                return this.$store.getters.getNickname
             }
         }
     }
@@ -39,6 +45,7 @@
             align-items: center;
             justify-content: space-between;
             color: #9e9e9e;
+            padding-right: 20px;
             a {
                 color: #9e9e9e;
                 text-decoration: none;

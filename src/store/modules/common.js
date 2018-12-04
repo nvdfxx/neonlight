@@ -1,7 +1,8 @@
 export default {
     state: {
         appLoading: false,
-        accountID: null
+        accountID: null,
+        nickname: null
     },
     mutations: {
         SET_APP_LOADING(state, payload) {
@@ -9,6 +10,9 @@ export default {
         },
         SET_ACCOUNT_ID(state, payload) {
             state.accountID = payload
+        },
+        SET_NICKNAME(state, payload) {
+            state.nickname = payload
         }
     },
     actions: {
@@ -17,10 +21,14 @@ export default {
         },
         setAccountID({commit}, payload) {
             commit('SET_ACCOUNT_ID', payload)
+        },
+        setNickname({commit}, payload) {
+            commit('SET_NICKNAME', payload)
         }
     },
     getters: {
         getAppLoading: state => state.appLoading,
-        getAccountID: state => state.accountID
+        getAccountID: state => state.accountID,
+        getNickname: state => state.nickname
     }
 }

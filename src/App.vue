@@ -50,6 +50,7 @@ export default {
         height: 100vh;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
     #nav {
         padding: 30px;
@@ -67,10 +68,11 @@ export default {
         display: flex;
         flex: auto;
         .content-wrapper {
-            flex: auto;
+            flex: 1;
             background: #202124;
             color: #fff;
-            padding-top: 30px;
+            padding: 30px 20px;
+            overflow: auto;
         }
     }
 
