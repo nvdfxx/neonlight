@@ -12,7 +12,7 @@
     </form>
     <div class="nickname-list">
       <ul v-if="nicknames.length > 0">
-        <li class="nickname-list__item" :key="i" v-for="(item,i) in nicknames" @click="goToStats(item.account_id, item.nickname)">
+        <li class="nickname-list__item" :key="i" v-for="(item,i) in nicknames" @click="goToStats(item.account_id)">
           {{item.nickname}}
         </li>
       </ul>

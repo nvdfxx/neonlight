@@ -3,14 +3,14 @@ import axios from 'axios'
 export default {
     state: {
         appLoading: false,
-        accountID: null
+        account: null
     },
     mutations: {
         SET_APP_LOADING(state, payload) {
             state.appLoading = payload
         },
         SET_ACCOUNT_ID(state, payload) {
-            state.accountID = payload
+            state.account = payload
         }
     },
     actions: {
@@ -28,8 +28,6 @@ export default {
     },
     getters: {
         getAppLoading: state => state.appLoading,
-        getStats: state => state.accountID.statistics.all,
-        getAccountID: state => state.accountID.account_id,
-        getNickname: state => state.accountID.nickname
+        getAccount: state => state.account
     }
 }

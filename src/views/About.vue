@@ -51,11 +51,16 @@
     export default {
         data() {
             return {
-                stats: {},
+                //stats: {},
                 winrateClass: ''
             }
         },
         computed: {
+            stats() {
+                let getAccount = this.$store.getters.getAccount;
+                console.log(getAccount);
+                return getAccount ? getAccount.statistics.all : {}
+            },
             winrate() {
                 let battles = this.stats.battles;
                 let wins = this.stats.wins;
@@ -96,7 +101,12 @@
             }
         },
         created() {
-            this.stats = this.$store.getters.getStats
+            /*this.$nextTick(() => {
+                let getAccount = this.$store.getters.getAccount;
+            console.log(getAccount);
+            this.stats = getAccount ? getAccount.statistics.all : {}
+            })*/
+            
         }
     }
 </script>

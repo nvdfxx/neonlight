@@ -7,9 +7,6 @@
             <div v-if="getNickname" class="header__nick">
                 {{getNickname}}
             </div>
-            <div v-else class="header__nick">
-                
-            </div>
         </div>
     </header>
 </template>
@@ -23,7 +20,9 @@
         },
         computed: {
             getNickname() {
-                return this.$store.getters.getNickname
+                let getAccount = this.$store.getters.getAccount;
+                console.log(getAccount)
+                return getAccount ? getAccount.nickname : 'nickname'
             }
         }
     }
